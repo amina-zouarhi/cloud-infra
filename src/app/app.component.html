@@ -1,0 +1,41 @@
+<div class="app-container">
+  <div class="main-content">
+    <header class="header">
+      <button mat-button (click)="sidenav.toggle()">Toggle Sidenav</button>
+
+      <div class="logo">
+        <img src="bp_logo.png" alt="Logo" />
+      </div>
+
+      <app-user-info></app-user-info>
+    </header>
+    <mat-sidenav-container class="slidenav-menu">
+      <mat-sidenav #sidenav mode="side" opened>
+        <mat-list>
+          <a mat-list-item href="#">IAAS</a>
+          <mat-list>
+            <a mat-list-item href="#">Create VM</a>
+            <a mat-list-item href="#">Delete VM</a>
+            <a mat-list-item href="#">Clone VM</a>
+          </mat-list>
+          <a mat-list-item href="#">Database Services</a>
+          <a mat-list-item href="#">Kubernetes</a>
+        </mat-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <div class="content">
+          <app-cluster-info-card
+            *ngFor="let cluster of clusters"
+            [cluster]="cluster"
+          ></app-cluster-info-card>
+          <div class="cluster-card" *ngFor="let cluster of clusters">
+            <h3>{{ cluster.name }}</h3>
+            <p>{{ cluster.description }}</p>
+          </div>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
+<router-outlet />
