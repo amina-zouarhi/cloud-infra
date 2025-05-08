@@ -1,26 +1,39 @@
 <div class="app-container">
   <div class="main-content">
     <header class="header">
-      <button mat-button (click)="sidenav.toggle()">Toggle Sidenav</button>
+      <div class="flex-left">
+        <button mat-button (click)="sidenav.toggle()">
+          <img class="toggle" src="toggle.png" alt="Toggle" />
+        </button>
 
-      <div class="logo">
-        <img src="bp_logo.png" alt="Logo" />
+        <div class="logo">
+          <img src="bp_logo.png" alt="Logo" />
+        </div>
       </div>
-
       <app-user-info></app-user-info>
     </header>
     <mat-sidenav-container class="slidenav-menu">
       <mat-sidenav #sidenav mode="side" opened>
-        <mat-list>
-          <a mat-list-item href="#">IAAS</a>
-          <mat-list>
-            <a mat-list-item href="#">Create VM</a>
-            <a mat-list-item href="#">Delete VM</a>
-            <a mat-list-item href="#">Clone VM</a>
-          </mat-list>
-          <a mat-list-item href="#">Database Services</a>
-          <a mat-list-item href="#">Kubernetes</a>
-        </mat-list>
+        <mat-accordion>
+          <mat-expansion-panel disabled>
+            <mat-expansion-panel-header>
+              <a href="#">IAAS</a></mat-expansion-panel-header
+            >
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header
+              >Database Services</mat-expansion-panel-header
+            >
+            <p class="clickable" (click)="createVM()">Create VM</p>
+            <p class="clickable" (click)="deleteVM()">Delete VM</p>
+            <p class="clickable" (click)="cloneVM()">Clone VM</p>
+          </mat-expansion-panel>
+          <mat-expansion-panel disabled>
+            <mat-expansion-panel-header
+              ><a href="#">Kubernetes</a></mat-expansion-panel-header
+            >
+          </mat-expansion-panel>
+        </mat-accordion>
       </mat-sidenav>
 
       <mat-sidenav-content>

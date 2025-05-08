@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{ data["mode"] | titlecase }} Item</h2>
+
+<mat-dialog-content class="popup-content">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>UUID of the entity</mat-label>
+    <input matInput [(ngModel)]="input1" />
+  </mat-form-field>
+
+  <ng-container *ngIf="data['mode'] === 'clone'">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>UUID of the task (used for idempotency)</mat-label>
+      <input matInput [(ngModel)]="input2" />
+    </mat-form-field>
+  </ng-container>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="onValidate()">
+    Validate
+  </button>
+</mat-dialog-actions>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SlidingMenuComponent } from './components/sliding-menu/sliding-menu.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ClusterInfoCardComponent } from './components/cluster-info-card/cluster-info-card.component';
 import { Cluster } from './models/cluster';
@@ -9,6 +8,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupDialogComponent } from './common/popups/popup-dialog/popup-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
   styleUrls: ['./app.component.scss'],
   imports: [
     RouterOutlet,
-    SlidingMenuComponent,
     UserInfoComponent,
     ClusterInfoCardComponent,
     CommonModule,
@@ -36,4 +36,30 @@ export class AppComponent {
     { name: 'Cluster Storage', description: 'Cluster 1' },
     { name: 'Cost per Usage', description: 'Cluster 1' },
   ];
+
+  constructor(public dialog: MatDialog) {}
+
+  openPopup(mode: 'create' | 'clone' | 'delete'): void {
+    this.dialog.open(PopupDialogComponent, {
+      minWidth: '700px',
+      data: {
+        mode,
+      },
+    });
+  }
+
+  createVM(): void {
+    this.openPopup('create');
+    console.log('VM created');
+  }
+
+  deleteVM(): void {
+    this.openPopup('delete');
+    console.log('VM deleted');
+  }
+
+  cloneVM(): void {
+    this.openPopup('clone');
+    console.log('VM cloned');
+  }
 }
