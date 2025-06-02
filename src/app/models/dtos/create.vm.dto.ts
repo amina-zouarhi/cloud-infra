@@ -1,3 +1,3 @@
 export interface CreateVMDto {
-  task_uuid: string;
+  task_uuid?: string;
 }

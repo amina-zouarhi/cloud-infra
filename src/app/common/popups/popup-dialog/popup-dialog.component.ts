@@ -24,8 +24,9 @@ import { MatInputModule } from '@angular/material/input';
   ],
 })
 export class PopupDialogComponent {
-  input1 = '';
-  input2 = '';
+  entityUuid = '';
+  taskUuid = '';
+  entityVersion = '';
 
   constructor(
     public dialogRef: MatDialogRef<PopupDialogComponent>,
@@ -37,11 +38,27 @@ export class PopupDialogComponent {
   }
 
   onValidate(): void {
-    const result =
-      this.data['mode'] === 'create'
-        ? { input1: this.input1 }
-        : { input1: this.input1, input2: this.input2 };
+    let result: any;
 
+    switch (this.data['mode']) {
+      case 'create':
+        result = {
+          entityUuid: this.entityUuid,
+          taskUuid: this.taskUuid,
+        };
+        break;
+
+      case 'delete':
+        result = { entityUuid: this.entityUuid };
+        break;
+
+      case 'clone':
+        result = {
+          entityUuid: this.entityUuid,
+          entityVersion: this.entityVersion,
+        };
+        break;
+    }
     this.dialogRef.close(result);
   }
 }

@@ -1,13 +1,9 @@
+import { Reference } from './reference.model';
+
 export interface User {
   kind: string; // to migrate to a more specific type: 'user' | 'admin'
   uuid?: string;
   name?: string;
-  project_reference?: ProjectReference;
+  project_reference?: Reference;
   entity_version?: string;
-}
-
-export interface ProjectReference {
-  uuid: string;
-  kind: string; // to migrate to a more specific type: 'user' | 'admin'
-  name?: string;
 }
