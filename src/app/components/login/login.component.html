@@ -1,0 +1,40 @@
+<div class="login-page">
+  <mat-card class="login-card">
+    <div class="login-header">
+      <img src="nutanix-logo.svg" alt="Nutanix" class="logo" />
+      <h2>Login to Prism</h2>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Cluster URL</mat-label>
+        <input
+          matInput
+          placeholder="https://10.0.0.1:9440"
+          formControlName="clusterUrl"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <div *ngIf="error" class="error">{{ error }}</div>
+
+      <button
+        mat-flat-button
+        color="primary"
+        class="full-width"
+        [disabled]="loading || loginForm.invalid"
+      >
+        {{ loading ? "Logging in..." : "Login" }}
+      </button>
+    </form>
+  </mat-card>
+</div>

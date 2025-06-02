@@ -1,0 +1,29 @@
+.slidenav-menu {
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f7f6f5; /* Header/Footer Color */
+  color: #4d4b49; /* Text Color in Header */
+}
+
+.flex-left {
+  display: flex;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.toggle {
+  height: 50px;
+}
+
+.clickable {
+  cursor: pointer;
+}
