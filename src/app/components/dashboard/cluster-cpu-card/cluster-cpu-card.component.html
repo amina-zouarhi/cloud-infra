@@ -1,0 +1,16 @@
+<mat-card class="cluster-cpu-card">
+  <mat-card-title>Cluster CPU Usage</mat-card-title>
+
+  <mat-card-content *ngIf="!loading && !error">
+    <div class="usage">{{ cpuUsage | number : "1.2-2" }}%</div>
+    <div class="total">of {{ totalGHz | number : "1.0-0" }} GHz</div>
+  </mat-card-content>
+
+  <mat-card-content *ngIf="loading" class="loading">
+    <p>Loading cluster CPU usage...</p>
+  </mat-card-content>
+
+  <mat-card-content *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </mat-card-content>
+</mat-card>

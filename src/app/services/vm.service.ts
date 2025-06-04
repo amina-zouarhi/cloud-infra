@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
 import { CreateVMDto } from '../models/dtos/create.vm.dto';
 import { CloneVMDtoIn } from '../models/dtos/clone.vm.dto.in';
-import { VMDtoOutList } from '../models/dtos/vm.dto.out';
+import { VMDtoOut } from '../models/dtos/vm.dto.out';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 
@@ -15,12 +15,22 @@ export class VMService {
     private readonly authService: AuthService
   ) {}
 
-  getVMs(): Observable<VMDtoOutList> {
+  getVMs(): Observable<VMDtoOut[]> {
     const headers = this.authService.getAuthHeaders();
     const clusterUrl = this.authService.getClusterUrl();
     const url = `${clusterUrl}/v3/vms/list`;
+    const body = { kind: 'vm', length: 100 };
 
-    return this.http.get<VMDtoOutList>(url, { headers });
+    return this.http.post<any>(url, body, { headers }).pipe(
+      map((res) =>
+        res.entities.map((vm: any) => ({
+          name: vm.status?.name ?? vm.spec?.name,
+          powerState: vm.status?.resources?.power_state ?? 'UNKNOWN',
+          uuid: vm.metadata?.uuid,
+          resources: vm.status?.resources,
+        }))
+      )
+    );
   }
 
   createVM(uuid: string, createVMDto: CreateVMDto): Observable<void> {

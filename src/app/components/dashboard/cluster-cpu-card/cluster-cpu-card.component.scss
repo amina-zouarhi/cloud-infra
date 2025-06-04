@@ -1,0 +1,20 @@
+@use "styles.scss" as *;
+
+.cluster-cpu-card {
+  @include card-style;
+
+  mat-card-content {
+    text-align: center;
+
+    .usage {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #1a202c;
+    }
+
+    .total {
+      font-size: 0.95rem;
+      color: #6b7280;
+    }
+  }
+}

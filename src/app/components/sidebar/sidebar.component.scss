@@ -1,0 +1,127 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: #f5f5f5;
+  width: 220px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+
+  &.closed {
+    width: 90px;
+
+    .nav .option-btn span {
+      display: none;
+    }
+  }
+
+  .toggle-btn {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    background: #fafafa;
+
+    mat-icon {
+      font-size: 24px;
+    }
+  }
+
+  .nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+
+      &.active {
+        font-weight: bold;
+        background-color: #d0d0d0;
+      }
+
+      mat-icon {
+        margin-right: 12px;
+        font-size: 20px;
+      }
+
+      span {
+        white-space: nowrap;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.menu-group {
+  .menu-title {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+
+    mat-icon {
+      margin-right: 12px;
+    }
+
+    .expand-icon {
+      margin-left: auto;
+    }
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+
+  .submenu {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0; // Light background to show nesting
+    padding-left: 12px; // Indentation for child items
+    border-left: 3px solid #ccc;
+
+    .option-btn {
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+
+      mat-icon {
+        margin-right: 10px;
+        font-size: 18px;
+      }
+
+      span {
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      &:hover {
+        background-color: #e8e8e8;
+      }
+
+      &.active {
+        font-weight: bold;
+        background-color: #dcdcdc;
+      }
+    }
+  }
+}

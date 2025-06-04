@@ -1,0 +1,39 @@
+<aside class="sidebar" [class.closed]="!isOpen">
+  <div (click)="toggleSidebar()" class="toggle-btn">
+    <mat-icon>{{ isOpen ? "menu_open" : "menu" }}</mat-icon>
+  </div>
+
+  <nav class="nav">
+    <div class="menu-group">
+      <div class="menu-title" (click)="toggleIAAS()">
+        <mat-icon>cloud</mat-icon>
+        <span *ngIf="isOpen">IAAS</span>
+        <mat-icon *ngIf="isOpen" class="expand-icon">
+          {{ isIAASOpen ? "expand_less" : "expand_more" }}
+        </mat-icon>
+      </div>
+
+      <div *ngIf="isIAASOpen" class="submenu">
+        <div class="option-btn" (click)="openPopup('create')">
+          <mat-icon>add</mat-icon>
+          <span *ngIf="isOpen">Create VM</span>
+        </div>
+        <div class="option-btn" (click)="openPopup('delete')">
+          <mat-icon>delete</mat-icon>
+          <span *ngIf="isOpen">Delete VM</span>
+        </div>
+        <div class="option-btn" (click)="openPopup('clone')">
+          <mat-icon>content_copy</mat-icon>
+          <span *ngIf="isOpen">Clone VM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-title">
+        <mat-icon>widgets</mat-icon>
+        <span *ngIf="isOpen">Kubernetes</span>
+      </div>
+    </div>
+  </nav>
+</aside>

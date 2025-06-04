@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { VMService } from '../../services/vm.service';
-import { VMDtoOutList } from '../../models/dtos/vm.dto.out';
+import { VMService } from '../../../services/vm.service';
+import { VMDtoOut } from '../../../models/dtos/vm.dto.out';
 
 @Component({
   selector: 'app-vm-summary-card',
@@ -12,11 +12,11 @@ import { VMDtoOutList } from '../../models/dtos/vm.dto.out';
   styleUrls: ['./vm-summary-card.component.scss'],
 })
 export class VmSummaryCardComponent implements OnInit {
-  vms: VMDtoOutList = [];
+  vms: VMDtoOut[] = [];
   loading = true;
   error: string | null = null;
 
-  constructor(private vmService: VMService) {}
+  constructor(private readonly vmService: VMService) {}
 
   ngOnInit(): void {
     this.vmService.getVMs().subscribe({
@@ -37,11 +37,15 @@ export class VmSummaryCardComponent implements OnInit {
   }
 
   get poweredOn(): number {
-    return this.vms.filter((vm) => vm.state?.toLowerCase() === 'on').length;
+    return this.vms.filter(
+      (vm) => vm.resources?.power_state?.toLowerCase() === 'on'
+    ).length;
   }
 
   get poweredOff(): number {
-    return this.vms.filter((vm) => vm.state?.toLowerCase() === 'off').length;
+    return this.vms.filter(
+      (vm) => vm.resources?.power_state?.toLowerCase() === 'off'
+    ).length;
   }
 
   get totalMemory(): number {

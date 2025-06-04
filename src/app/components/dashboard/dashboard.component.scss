@@ -1,5 +1,16 @@
-.slidenav-menu {
-  height: 100vh;
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .header {
@@ -7,8 +18,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f7f6f5; /* Header/Footer Color */
-  color: #4d4b49; /* Text Color in Header */
+  background-color: #f7f6f5;
+  color: #4d4b49;
 }
 
 .flex-left {
@@ -18,12 +29,4 @@
 .logo {
   font-size: 24px;
   font-weight: bold;
-}
-
-.toggle {
-  height: 50px;
-}
-
-.clickable {
-  cursor: pointer;
 }

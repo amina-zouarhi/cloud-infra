@@ -1,26 +1,7 @@
+@use "styles.scss" as *;
+
 .summary-card {
-  width: 380px;
-  margin: 16px auto;
-  padding: 24px;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-  }
-
-  mat-card-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1a202c;
-    margin-bottom: 16px;
-    text-align: center;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 8px;
-  }
+  @include card-style;
 
   mat-card-content {
     display: flex;
@@ -63,16 +44,5 @@
         color: white;
       }
     }
-  }
-
-  .loading,
-  .error {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #6b7280;
-  }
-
-  .error {
-    color: #e53e3e;
   }
 }

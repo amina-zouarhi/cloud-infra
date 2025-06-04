@@ -1,6 +1,15 @@
-import { VM } from '../vm.model';
+export interface VMDtoOut {
+  uuid: string;
+  name: string;
+  state?: 'RUNNING' | 'STOPPED' | 'DELETED' | string;
 
-// update if VM model structure changes
-export type VMDtoOut = VM;
+  description?: string;
 
-export type VMDtoOutList = VMDtoOut[];
+  resources?: {
+    power_state?: 'ON' | 'OFF' | 'PAUSED' | string;
+    num_threads_per_core?: number;
+    memory_size_mib?: number;
+    num_vcpus_per_socket?: number;
+    num_sockets?: number;
+  };
+}

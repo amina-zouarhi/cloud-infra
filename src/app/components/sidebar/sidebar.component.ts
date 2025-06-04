@@ -1,46 +1,40 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PopupDialogComponent } from '../../common/popups/popup-dialog/popup-dialog.component';
 import { CloneVMDtoIn } from '../../models/dtos/clone.vm.dto.in';
 import { CreateVMDto } from '../../models/dtos/create.vm.dto';
 import { VMService } from '../../services/vm.service';
-import { UserInfoComponent } from '../user-info/user-info.component';
-import { VmSummaryCardComponent } from './vm-summary-card/vm-summary-card.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { ClusterCpuCardComponent } from './cluster-cpu-card/cluster-cpu-card.component';
-import { ClusterMemoryCardComponent } from './cluster-memory-card/cluster-memory-card.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
-  imports: [
-    UserInfoComponent,
-    VmSummaryCardComponent,
-    CommonModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatListModule,
-    MatExpansionModule,
-    SidebarComponent,
-    ClusterCpuCardComponent,
-    ClusterMemoryCardComponent,
-  ],
+  selector: 'app-sidebar',
+  standalone: true,
+  imports: [MatIconModule, CommonModule],
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
 })
-export class DashboardComponent {
-  isSidebarOpen = true;
+export class SidebarComponent {
+  @Output() toggle = new EventEmitter<boolean>();
+
+  isOpen = true;
+  isIAASOpen = true;
 
   constructor(
     public dialog: MatDialog,
     public vmService: VMService,
     private readonly snackBar: MatSnackBar
   ) {}
+
+  toggleSidebar() {
+    this.isOpen = !this.isOpen;
+    this.toggle.emit(this.isOpen);
+  }
+
+  toggleIAAS(): void {
+    this.isIAASOpen = !this.isIAASOpen;
+  }
 
   openPopup(mode: 'create' | 'delete' | 'clone'): void {
     const dialogRef = this.dialog.open(PopupDialogComponent, {
