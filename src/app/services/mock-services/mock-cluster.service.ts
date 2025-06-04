@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, delay, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ export class MockClusterService {
     return of({
       usagePercent: 19.45,
       totalGHz: 132,
-    });
+    }).pipe(delay(300));
   }
 
   getClusterMemoryStats(): Observable<{
@@ -19,6 +19,6 @@ export class MockClusterService {
     return of({
       usagePercent: 38.44,
       totalGiB: 753.92,
-    });
+    }).pipe(delay(300));
   }
 }
