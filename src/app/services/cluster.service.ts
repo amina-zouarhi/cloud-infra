@@ -18,7 +18,7 @@ export class ClusterService {
     const clusterUrl = this.authService.getClusterUrl();
 
     // hypervisor_cpu_usage_ppm exists in v2, to retrieve it in v3 please dig further on how to compute these stats
-    const url = `${clusterUrl}/v3/clusters/list`;
+    const url = `${clusterUrl}/api/v3/clusters/list`;
 
     return this.http.post<any>(url, {}, { headers }).pipe(
       map((response) => {
@@ -47,7 +47,7 @@ export class ClusterService {
     const clusterUrl = this.authService.getClusterUrl();
 
     // hypervisor_cpu_usage_ppm exists in v2, to retrieve it in v3 please dig further on how to compute these stats
-    const url = `${clusterUrl}/v3/clusters/list`;
+    const url = `${clusterUrl}/api/v3/clusters/list`;
 
     return this.http.post<any>(url, {}, { headers }).pipe(
       map((response) => {

@@ -18,7 +18,7 @@ export class VMService {
   getVMs(): Observable<VMDtoOut[]> {
     const headers = this.authService.getAuthHeaders();
     const clusterUrl = this.authService.getClusterUrl();
-    const url = `${clusterUrl}/v3/vms/list`;
+    const url = `${clusterUrl}/api/v3/vms/list`;
     const body = { kind: 'vm', length: 100 };
 
     return this.http.post<any>(url, body, { headers }).pipe(
@@ -36,7 +36,7 @@ export class VMService {
   createVM(uuid: string, createVMDto: CreateVMDto): Observable<void> {
     const headers = this.authService.getAuthHeaders();
     const clusterUrl = this.authService.getClusterUrl();
-    const url = `${clusterUrl}/v3/vms/${uuid}/acpi_shutdown`;
+    const url = `${clusterUrl}/api/v3/vms/${uuid}/acpi_shutdown`;
 
     return this.http.post<CreateVMDto>(url, createVMDto, { headers }).pipe(
       map((vmDto) => {
@@ -52,7 +52,7 @@ export class VMService {
   deleteVM(uuid: string): Observable<void> {
     const headers = this.authService.getAuthHeaders();
     const clusterUrl = this.authService.getClusterUrl();
-    const url = `${clusterUrl}/v3/vms/${uuid}`;
+    const url = `${clusterUrl}/api/v3/vms/${uuid}`;
 
     return this.http.delete(url, { headers }).pipe(
       map(() => {
@@ -68,7 +68,7 @@ export class VMService {
   cloneVM(uuid: string, cloneVMDtoIn: CloneVMDtoIn): Observable<void> {
     const headers = this.authService.getAuthHeaders();
     const clusterUrl = this.authService.getClusterUrl();
-    const url = `${clusterUrl}/v3/vms/${uuid}/clone`;
+    const url = `${clusterUrl}/api/v3/vms/${uuid}/clone`;
 
     return this.http.post<CreateVMDto>(url, cloneVMDtoIn, { headers }).pipe(
       map((vmDto) => {

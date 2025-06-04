@@ -19,7 +19,7 @@ export class AuthService {
       Authorization: `Basic ${encoded}`,
     });
 
-    return this.http.get(`${clusterUrl}/v3/vms`, { headers }).pipe(
+    return this.http.get(`${clusterUrl}/api/v3/vms`, { headers }).pipe(
       tap(() => {
         localStorage.setItem(this.TOKEN_KEY, encoded);
         localStorage.setItem(this.CLUSTER_URL_KEY, clusterUrl);
